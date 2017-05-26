@@ -4,7 +4,7 @@ namespace Flerex\LaravelMarkdown\Providers;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
-use Parsedown;
+use Flerex\LaravelMarkdown\Parsedown;
 
 /**
  * Class ParsedownServiceProvider
