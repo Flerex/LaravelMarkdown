@@ -1,5 +1,7 @@
 <?php
 
+use Flerex\LaravelMarkdown\Parsedown;
+
 /**
  * @param string $text
  * @return string
