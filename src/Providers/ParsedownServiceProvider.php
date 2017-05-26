@@ -1,6 +1,6 @@
 <?php
 
-namespace Parsedown\Providers;
+namespace Flerex\LaravelMarkdown\Providers;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
