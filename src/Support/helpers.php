@@ -1,6 +1,6 @@
 <?php
 
-use Flerex\LaravelMarkdown\Parsedown;
+use Flerex\LaravelMarkdown\Markdown;
 
 /**
  * @param string $text
@@ -11,7 +11,7 @@ function parsedown($text)
     /**
      * @var Parsedown $parser
      */
-    $parser = resolve(Parsedown::class);
+    $parser = resolve(Markdown::class);
 
     return $parser->text($text);
 }

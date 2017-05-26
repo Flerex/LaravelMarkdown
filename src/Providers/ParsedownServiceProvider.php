@@ -4,7 +4,7 @@ namespace Flerex\LaravelMarkdown\Providers;
 
 use Blade;
 use Illuminate\Support\ServiceProvider;
-use Flerex\LaravelMarkdown\Parsedown;
+use Flerex\LaravelMarkdown\Markdown;
 
 /**
  * Class ParsedownServiceProvider
@@ -21,8 +21,8 @@ class ParsedownServiceProvider extends ServiceProvider
             return "<?php echo parsedown($expression); ?>";
         });
 
-        $this->app->singleton(Parsedown::class, function () {
-            return new Parsedown();
+        $this->app->singleton(Markdown::class, function () {
+            return new Markdown();
         });
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Flerex\LaravelMarkdown;
 
-class Flerex\LaravelMarkdown\Parsedown extends Parsedown\Parsedown {
+use Parsedown;
+
+class Markdown extends Parsedown {
 
 }
