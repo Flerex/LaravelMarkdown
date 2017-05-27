@@ -8,26 +8,42 @@ class Markdown extends Parsedown {
 	
 	function __construct()
 	{
-		$this->InlineTypes['^'][]= 'DropCap';
-		$this->inlineMarkerList .= '^';
+		$this->BlockTypes['^'][]= 'DropCap';
 	}
 
-	public function inlineDropCap($excerpt)
-	{
+	public function blockDropCap($line)
+    {
 
-		if (preg_match('/^\^(.{1})/', $excerpt['text'], $matches)) {
-			return [
-				'extent'  => strlen($matches[0]),
-				'element' => [
-					'name' => 'span',
-					'text' => $matches[1],
-					'attributes' => [
-						'class' => 'drop-cap',
-					],
-				],
-			];
-		}
-		
-	}
+        if (preg_match('/^\^(\w)/', $line['text'], $matches)) {
+            return [
+                'element' => [
+                    'name' => 'p',
+                    'handler' => 'elements',
+                    'text' => [
+                        [
+                            'name' => 'span',
+                            'text' => $matches[1],
+                            'attributes' => [
+                                'class' => 'drop-cap',
+                            ],
+                        ],
+                        [
+                            'name' => 'span',
+                            'handler' => 'line',
+                            'text' => substr($line['text'], 2),
+                        ]
+                    ],
+                ],
+            ];
+        }
+    }
+
+    public function blockDropCapContinue($line, $Block)
+    {
+        if (!isset($Block['interrupted'])) {
+            $Block['element']['text'][1]['text'][] = $line['text'];
+            return $Block;
+        }
+    }
 
 }
