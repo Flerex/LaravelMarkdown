@@ -40,8 +40,11 @@ class Markdown extends Parsedown {
 
     public function blockDropCapContinue($line, $Block)
     {
-        if (!isset($Block['interrupted'])) {
-            $Block['element']['text'][1]['text'][] = $line['text'];
+        if (preg_match('/^\^(\w)/', $line['text'], $matches)) {
+            return null;
+        }
+        elseif (!isset($Block['interrupted'])) {
+            $Block['element']['text'][1]['text'] .= "\n".$line['text'];
             return $Block;
         }
     }
